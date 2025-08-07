@@ -11,7 +11,7 @@ This is a modern and responsive Movies App built using **Next.js**, **Tailwind C
 - 🔥 Trending, Top Rated, and Now Playing rows
 - 📱 Mobile-friendly sidebar and navbar
 
-## 📸 Screenshots
+## 📸 Screenshot
 
 
 ![Desktop Screenshot](./2.png)
