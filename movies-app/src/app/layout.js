@@ -1,17 +1,22 @@
+// app/layout.js or app/dashboard/layout.js
+'use client';
+
+import './globals.css';
 import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar';
-import './globals.css'; 
 
-export default function DashboardLayout({ children }) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-[#111] text-white min-h-screen flex">
+      <head />
+      <body className="bg-black text-white min-h-screen w-full flex overflow-x-hidden">
         <Sidebar />
 
-        <div className="flex flex-col flex-1 ml-[250px]">
+        {/* Main content area */}
+<div className="flex flex-col flex-1 overflow-x-hidden">
           <Navbar />
 
-          <main className="mt-[70px] p-6">
+          <main className=" bg-black sm:mt-[70px] p-0 sm:p-6 overflow-x-hidden">
             {children}
           </main>
         </div>

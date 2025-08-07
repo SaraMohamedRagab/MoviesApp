@@ -5,30 +5,35 @@ export default async function MoviePage({ params }) {
   const { id } = params;
   const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
+  // Fetch movie details
   const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`);
   if (!res.ok) throw new Error('Failed to fetch movie details');
   const movie = await res.json();
 
+  // Fetch trailer video
   const videoRes = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}`);
   const videoData = await videoRes.json();
   const trailer = videoData.results.find(v => v.type === "Trailer" && v.site === "YouTube");
 
   return (
-    <div className="min-h-screen bg-black text-white flex justify-center items-start p-6">
-      <div className="max-w-5xl w-full">
-        <div className="flex flex-col md:flex-row gap-6">
-          <div>
-            {movie.poster_path && (
+    <div className="min-h-screen bg-black text-white flex justify-center items-start px-4 py-8">
+      <div className="max-w-6xl w-full">
+        {/* Poster and Details */}
+        <div className="flex flex-col md:flex-row gap-8">
+          {/* Poster */}
+          {movie.poster_path && (
+            <div className="flex-shrink-0">
               <Image
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title || 'Movie Poster'}
-                width={300}
-                height={450}
-                className="rounded shadow-lg"
+                width={400}
+                height={600}
+                className="rounded-lg shadow-2xl"
               />
-            )}
-          </div>
+            </div>
+          )}
 
+          {/* Movie Info */}
           <div className="flex flex-col justify-between">
             <div>
               <h1 className="text-4xl font-bold mb-4">{movie.title}</h1>
@@ -45,18 +50,18 @@ export default async function MoviePage({ params }) {
           </div>
         </div>
 
-        {/* Trailer */}
+        {/* Trailer Section */}
         {trailer && (
-          <div className="mt-8">
-            <h2 className="text-2xl font-semibold mb-2">🎞 Trailer</h2>
-            <div className="aspect-w-16 aspect-h-9">
+          <div className="mt-10">
+            <h2 className="text-2xl font-semibold mb-4">🎞 Trailer</h2>
+            <div className="w-full h-[240px] sm:h-[360px] md:h-[420px] lg:h-[480px]">
               <iframe
                 src={`https://www.youtube.com/embed/${trailer.key}`}
                 title="Trailer"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-                className="w-full rounded-lg"
+                className="w-full h-full rounded-lg"
               />
             </div>
           </div>
