@@ -13,12 +13,8 @@ This is a modern and responsive Movies App built using **Next.js**, **Tailwind C
 
 ## 📸 Screenshots
 
-### 🖥 Desktop View
+
 ![Desktop Screenshot](./2.png)
-
-### 📱 Mobile View
-![Mobile Screenshot 1](./1.png)
-
 
 ## 🛠 Built With
 
